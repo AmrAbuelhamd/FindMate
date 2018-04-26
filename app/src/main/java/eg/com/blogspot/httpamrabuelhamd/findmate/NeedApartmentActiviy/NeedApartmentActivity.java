@@ -267,33 +267,33 @@ public class NeedApartmentActivity extends AppCompatActivity implements AdapterV
             loadingIndicator.setVisibility(View.VISIBLE);
             //then
             //TODO send data to the server and get result back
-            //region here i start the background thread
-
-            // Get a reference to the ConnectivityManager to check state of network connectivity
-            ConnectivityManager connMgr = (ConnectivityManager)
-                    getSystemService(Context.CONNECTIVITY_SERVICE);
-
-            // Get details on the currently active default data network
-            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-
-            // If there is a network connection, fetch data
-            if (networkInfo != null && networkInfo.isConnected()) {
-                // Get a reference to the LoaderManager, in order to interact with loaders.
-                LoaderManager loaderManager = getLoaderManager();
-
-                // Initialize the loader. Pass in the int ID constant defined above and pass in null for
-                // the bundle. Pass in this activity for the LoaderCallbacks parameter (which is valid
-                // because this activity implements the LoaderCallbacks interface).
-                loaderManager.initLoader(APARTMENT_LOADER_ID, null, this);
-            } else {
-                // Otherwise, display error
-                // First, hide loading indicator so error message will be visible
-                loadingIndicator.setVisibility(View.GONE);
-
-                // Update empty state with no connection error message
-                mEmptyStateTextView.setText(R.string.no_internet_connection);
-            }
-            //endregion
+//            //region here i start the background thread
+//
+//            // Get a reference to the ConnectivityManager to check state of network connectivity
+//            ConnectivityManager connMgr = (ConnectivityManager)
+//                    getSystemService(Context.CONNECTIVITY_SERVICE);
+//
+//            // Get details on the currently active default data network
+//            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+//
+//            // If there is a network connection, fetch data
+//            if (networkInfo != null && networkInfo.isConnected()) {
+//                // Get a reference to the LoaderManager, in order to interact with loaders.
+//                LoaderManager loaderManager = getLoaderManager();
+//
+//                // Initialize the loader. Pass in the int ID constant defined above and pass in null for
+//                // the bundle. Pass in this activity for the LoaderCallbacks parameter (which is valid
+//                // because this activity implements the LoaderCallbacks interface).
+//                loaderManager.initLoader(APARTMENT_LOADER_ID, null, this);
+//            } else {
+//                // Otherwise, display error
+//                // First, hide loading indicator so error message will be visible
+//                loadingIndicator.setVisibility(View.GONE);
+//
+//                // Update empty state with no connection error message
+//                mEmptyStateTextView.setText(R.string.no_internet_connection);
+//            }
+//            //endregion
 
             prepareMainOptions();
             //makes screen scroll down to show the results to the user
@@ -373,15 +373,15 @@ public class NeedApartmentActivity extends AppCompatActivity implements AdapterV
 //        String i = findViewById(radioGroup.getCheckedRadioButtonId()).getTag().toString();
         //FOURTH get unique id
 //        UNIQE_GUID;
-//          //todo: now uncomment these bellow
-//        //building the url //todo change the bellow parameter to form the agreed url
-//        Uri baseUri = Uri.parse(EMADO_REQUEST_URL);
-//        Uri.Builder uriBuilder = baseUri.buildUpon();
-//
-//        uriBuilder.appendQueryParameter("format", "geojson");
-//        uriBuilder.appendQueryParameter("limit", "10");
-//        uriBuilder.appendQueryParameter("minmag", String.valueOf(min));
-//        uriBuilder.appendQueryParameter("orderby", String.valueOf(min));
+
+        //building the url //todo change the bellow parameter to form the agreed url
+        Uri baseUri = Uri.parse(EMADO_REQUEST_URL);
+        Uri.Builder uriBuilder = baseUri.buildUpon();
+
+        uriBuilder.appendQueryParameter("format", "geojson");
+        uriBuilder.appendQueryParameter("limit", "10");
+        uriBuilder.appendQueryParameter("minmag", String.valueOf(min));
+        uriBuilder.appendQueryParameter("orderby", String.valueOf(min));
 
 
 //        return new ApartmentLoader(this, uriBuilder.toString());
@@ -390,23 +390,23 @@ public class NeedApartmentActivity extends AppCompatActivity implements AdapterV
 
     @Override
     public void onLoadFinished(Loader<List<SingleAprtmentData>> loader, List<SingleAprtmentData> data) {
-//        // Hide loading indicator because the data has been loaded
-//        loadingIndicator.setVisibility(View.GONE);
-//
-//        // Set empty state text to display "No earthquakes found."
-//        mEmptyStateTextView.setText(R.string.no_apartments);
-//
-//        // Clear the adapter of previous apartment data
-//        //mAdapter.clear();
-//
-//        // If there is a valid list of {@link SingleApartmentData}s, then add them to the adapter's
-//        // data set. This will trigger the ListView to update.
-//        if (data != null && !data.isEmpty()) {
-//            dataArrayList.addAll(data);
-//            mAdapter.notifyDataSetChanged();
-//            mEmptyStateTextView.setVisibility(View.GONE);
-//            //updateUi(earthquakes);
-//        }
+        // Hide loading indicator because the data has been loaded
+        loadingIndicator.setVisibility(View.GONE);
+
+        // Set empty state text to display "No earthquakes found."
+        mEmptyStateTextView.setText(R.string.no_apartments);
+
+        // Clear the adapter of previous apartment data
+        //mAdapter.clear();
+
+        // If there is a valid list of {@link SingleApartmentData}s, then add them to the adapter's
+        // data set. This will trigger the ListView to update.
+        if (data != null && !data.isEmpty()) {
+            dataArrayList.addAll(data);
+            mAdapter.notifyDataSetChanged();
+            mEmptyStateTextView.setVisibility(View.GONE);
+            //updateUi(earthquakes);
+        }
     }
 
     @Override

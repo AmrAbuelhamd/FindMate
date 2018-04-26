@@ -49,36 +49,9 @@ class ApartmentLoader extends AsyncTaskLoader<List<SingleAprtmentData>> {
         if (mUrl == null) {
             return null;
         }
-        //todo now uncomment these
-//        // Perform the network request, parse the response, and extract a list of apartments.
-//        List<SingleAprtmentData> apartment = UtilsNeedApartment.fetchApartmentData(mUrl);
-//        return apartment;
-        //todo now delete these bellow
+        // Perform the network request, parse the response, and extract a list of apartments.
+        List<SingleAprtmentData> apartment = UtilsNeedApartment.fetchApartmentData(mUrl);
+        return apartment;
 
-        OkHttpClient client = new OkHttpClient();
-
-        RequestBody body =  new FormBody.Builder()
-                .add("username", "dasfad")
-                .add("password", "adfdflkad")
-                .build();
-
-        Request request = new Request.Builder()
-                .url(mUrl)
-                .post(body)
-                .build();
-        try {
-            Response response = client.newCall(request).execute();
-            if(response.code() == 200){
-                String responseData = response.body().string();
-                Log.v("laoder","response= "+responseData);
-                //Process the response Data
-            }else{
-                Log.v("laoder","e prrrrrrrrrrro");
-            }
-        } catch (IOException e) {
-            Log.v("laoder","e "+e);
-        }
-
-        return null;
     }
 }
