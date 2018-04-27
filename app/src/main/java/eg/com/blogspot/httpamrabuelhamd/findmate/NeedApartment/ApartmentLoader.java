@@ -1,20 +1,11 @@
-package eg.com.blogspot.httpamrabuelhamd.findmate.NeedApartmentActiviy;
+package eg.com.blogspot.httpamrabuelhamd.findmate.NeedApartment;
 
 import android.content.AsyncTaskLoader;
 import android.content.Context;
-import android.util.Log;
-import android.widget.TextView;
 
-import java.io.IOException;
 import java.util.List;
 
-import eg.com.blogspot.httpamrabuelhamd.findmate.NeedApartmentActiviy.singleAprtmentDataPublisher.SingleAprtmentData;
-import eg.com.blogspot.httpamrabuelhamd.findmate.R;
-import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+import eg.com.blogspot.httpamrabuelhamd.findmate.NeedApartment.singleAprtmentDataPublisher.SingleAprtmentData;
 
 /**
  * Created by amro mohamed on 4/17/2018.

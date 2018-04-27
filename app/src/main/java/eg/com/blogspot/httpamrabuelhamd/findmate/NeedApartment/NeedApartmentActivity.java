@@ -1,20 +1,15 @@
-package eg.com.blogspot.httpamrabuelhamd.findmate.NeedApartmentActiviy;
+package eg.com.blogspot.httpamrabuelhamd.findmate.NeedApartment;
 
 import android.app.LoaderManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
-import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -32,9 +27,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import eg.com.blogspot.httpamrabuelhamd.findmate.CustomItemClickListener;
-import eg.com.blogspot.httpamrabuelhamd.findmate.HandlingMainScreenViews.MainScreenDataAdapter;
-import eg.com.blogspot.httpamrabuelhamd.findmate.NeedApartmentActiviy.singleAprtmentDataPublisher.SingleAprtmentData;
-import eg.com.blogspot.httpamrabuelhamd.findmate.NeedApartmentActiviy.singleAprtmentDataPublisher.SingleAprtmentDataAdapter;
+import eg.com.blogspot.httpamrabuelhamd.findmate.NeedApartment.singleAprtmentDataPublisher.SingleAprtmentData;
+import eg.com.blogspot.httpamrabuelhamd.findmate.NeedApartment.singleAprtmentDataPublisher.SingleAprtmentDataAdapter;
 import eg.com.blogspot.httpamrabuelhamd.findmate.R;
 import xyz.klinker.android.drag_dismiss.DragDismissIntentBuilder;
 
@@ -418,4 +412,5 @@ public class NeedApartmentActivity extends AppCompatActivity implements AdapterV
         // check this http://bit.ly/2HPnlQB
     }
     //endregion
+
 }

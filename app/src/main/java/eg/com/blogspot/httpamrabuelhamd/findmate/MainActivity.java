@@ -15,7 +15,9 @@ import java.util.UUID;
 
 import eg.com.blogspot.httpamrabuelhamd.findmate.HandlingMainScreenViews.MainScreenData;
 import eg.com.blogspot.httpamrabuelhamd.findmate.HandlingMainScreenViews.MainScreenDataAdapter;
-import eg.com.blogspot.httpamrabuelhamd.findmate.NeedApartmentActiviy.NeedApartmentActivity;
+import eg.com.blogspot.httpamrabuelhamd.findmate.NeedApartment.NeedApartmentActivity;
+import eg.com.blogspot.httpamrabuelhamd.findmate.RentApartment.RentApartLoader;
+import eg.com.blogspot.httpamrabuelhamd.findmate.RentApartment.RentApartmentActivity;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
@@ -45,7 +47,12 @@ public class MainActivity extends AppCompatActivity {
                 if(position == 0) {
                     Intent intent = new Intent(context, NeedApartmentActivity.class);
                     startActivity(intent);
-                }//TODO create another one for the second option
+                }
+                else {
+
+                    Intent intent = new Intent(context, RentApartmentActivity.class);
+                    startActivity(intent);
+                }
             }
         });
         mRecyclerView.setAdapter(mAdapter);

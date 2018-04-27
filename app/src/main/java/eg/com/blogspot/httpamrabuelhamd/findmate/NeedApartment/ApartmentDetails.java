@@ -1,6 +1,5 @@
-package eg.com.blogspot.httpamrabuelhamd.findmate.NeedApartmentActiviy;
+package eg.com.blogspot.httpamrabuelhamd.findmate.NeedApartment;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,8 +15,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
-import eg.com.blogspot.httpamrabuelhamd.findmate.CustomItemClickListener;
-import eg.com.blogspot.httpamrabuelhamd.findmate.NeedApartmentActiviy.singleAprtmentDataPublisher.SingleAprtmentData;
+import eg.com.blogspot.httpamrabuelhamd.findmate.NeedApartment.singleAprtmentDataPublisher.SingleAprtmentData;
 import eg.com.blogspot.httpamrabuelhamd.findmate.R;
 import xyz.klinker.android.drag_dismiss.activity.DragDismissActivity;
 

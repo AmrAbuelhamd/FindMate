@@ -1,4 +1,4 @@
-package eg.com.blogspot.httpamrabuelhamd.findmate.NeedApartmentActiviy.singleAprtmentDataPublisher;
+package eg.com.blogspot.httpamrabuelhamd.findmate.NeedApartment.singleAprtmentDataPublisher;
 
 import android.os.Parcel;
 import android.os.Parcelable;
