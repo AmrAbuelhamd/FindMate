@@ -2,6 +2,7 @@ package eg.com.blogspot.httpamrabuelhamd.findmate.RentApartment;
 
 import android.app.LoaderManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.Loader;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
@@ -9,6 +10,9 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -16,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -48,6 +53,8 @@ public class RentApartmentActivity extends AppCompatActivity implements AdapterV
     RadioGroup radioGroup;
     int periodSpinnerwResult;
     int isFurnshed;
+    ProgressBar indicator;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,6 +102,7 @@ public class RentApartmentActivity extends AppCompatActivity implements AdapterV
         rentPrice = findViewById(R.id.rentPrice);
         adName = findViewById(R.id.titleEditText);
         periodSpinner = findViewById(R.id.periodSpinner);
+        indicator  = findViewById(R.id.rentApartInidcator);
     }
 
     private void setSpinner() {
@@ -186,13 +194,16 @@ public class RentApartmentActivity extends AppCompatActivity implements AdapterV
     public void saveDataToServer(View view) {
         String s = validateEditText();
         if (!s.equals(""))
-            Toast.makeText(this, s, Toast.LENGTH_LONG).show();
+            Snackbar.make(findViewById(R.id.myCoordinatorLayout), s,
+                    Snackbar.LENGTH_LONG)
+                    .show();
         else {
+            indicator.setVisibility(View.VISIBLE);
             isFurnshed = getRadioResult();
 
-            Toast.makeText(this, spinnerResult + " " +
-                    spinner2Result + " " + isFurnshed + " " + periodSpinnerwResult + " " + rentPrice.getText().toString()
-                    + " ", Toast.LENGTH_LONG).show();
+//            Toast.makeText(this, spinnerResult + " " +
+//                    spinner2Result + " " + isFurnshed + " " + periodSpinnerwResult + " " + rentPrice.getText().toString()
+//                    + " ", Toast.LENGTH_LONG).show();
             //region here i start the background thread
             // Get a reference to the ConnectivityManager to check state of network connectivity
             ConnectivityManager connMgr = (ConnectivityManager)
@@ -213,24 +224,39 @@ public class RentApartmentActivity extends AppCompatActivity implements AdapterV
             } else {
                 // Otherwise, display error
                 // First, hide loading indicator so error message will be visible
-//                loadingIndicator.setVisibility(View.GONE);
+                indicator.setVisibility(View.GONE);
 //
 //                // Update empty state with no connection error message
-//                mEmptyStateTextView.setText(R.string.no_internet_connection);
+                Snackbar.make(findViewById(R.id.myCoordinatorLayout), R.string.no_internet_connection,
+                        Snackbar.LENGTH_LONG)
+                        .show();
             }
             //endregion
         }
     }
     String validateEditText() {
         String errorMsg = "";
-        if (spinnerResult.equals(getResources().getString(R.string.firstSpinnerHint)))
+        if (spinnerResult.equals(getResources().getString(R.string.firstSpinnerHint))){
             errorMsg += getResources().getString(R.string.onNothingSelected)+"\n";
-        if (spinner2Result.equals(getResources().getString(R.string.secondSpinnerHint)))
-            errorMsg += getResources().getString(R.string.onNothingSelected2)+"\n";
-        if(TextUtils.isEmpty(adName.getText()))
-            errorMsg += "** "+adName.getHint()+"\n";
-        if(TextUtils.isEmpty(rentPrice.getText()))
-            errorMsg += "** "+rentPrice.getHint()+"\n";
+            TextView errorText = (TextView)spinner.getSelectedView();
+            errorText.setTextColor(Color.RED);//just to highlight that this is an error
+
+        }
+        if (spinner2Result.equals(getResources().getString(R.string.secondSpinnerHint))) {
+            errorMsg += getResources().getString(R.string.onNothingSelected2) + "\n";
+            TextView errorText = (TextView)spinner2.getSelectedView();
+            errorText.setTextColor(Color.RED);//just to highlight that this is an error
+        }
+        if(TextUtils.isEmpty(adName.getText())) {
+            adName.setError("لازم تكتب اسم للأعلان");
+            errorMsg += "** " + adName.getHint() + "\n";
+        }
+        if(TextUtils.isEmpty(rentPrice.getText())) {
+            rentPrice.setError("لازم تكتب سعر للايجار");
+            errorMsg += "** " + rentPrice.getHint() + "\n";
+        }
+
+
 
         return errorMsg;
     }
@@ -245,30 +271,10 @@ public class RentApartmentActivity extends AppCompatActivity implements AdapterV
         }
     }
 
-    String EMADO_REQUEST_URL = "http://192.168.1.5/exam/amr.php";
-//    String EMADO_REQUEST_URL = "http://192.168.1.13/emad.php";
+    //String EMADO_REQUEST_URL = "http://192.168.1.5/exam/amr.php";
+    String EMADO_REQUEST_URL = "http://192.168.1.13/emad.php";
     @Override
     public Loader<String> onCreateLoader(int id, Bundle args) {
-
-        //building the url //todo change the bellow parameter to form the agreed url
-        Uri baseUri = Uri.parse(EMADO_REQUEST_URL);
-        Uri.Builder uriBuilder = baseUri.buildUpon();
-//        spinnerResult;
-//        spinner2Result;
-//        isFurnshed = getRadioResult();
-//        periodSpinnerwResult;
-//        String s = rentPrice.getText().toString();
-//            adName.getText().toString();
-//        int price = Integer.valueOf(rentPrice.getText().toString());
-//        String address = spinnerResult+" "+spinner2Result;
-//
-//        uriBuilder.appendQueryParameter("action", "createApartment");
-//        uriBuilder.appendQueryParameter("address", "kdfakf");
-//        uriBuilder.appendQueryParameter("title", adName.getText().toString());
-//        uriBuilder.appendQueryParameter("price", rentPrice.getText().toString());
-//        uriBuilder.appendQueryParameter("price_per", String.valueOf(periodSpinnerwResult));
-//        uriBuilder.appendQueryParameter("furnished", String.valueOf(isFurnshed));
-//        uriBuilder.appendQueryParameter("location_id", String.valueOf(1));
 
         RequestBody formBody = new FormBody.Builder()
                 .add("action", "createApartment")
@@ -283,15 +289,21 @@ public class RentApartmentActivity extends AppCompatActivity implements AdapterV
 
     @Override
     public void onLoadFinished(Loader<String> loader, String data) {
+        indicator.setVisibility(View.GONE);
 
-        TextView textView = findViewById(R.id.textView5);
-
-        textView.setText(data);
+        if(data.length()!=0) {
+            startActivity(new Intent(this, StatActivity.class));
+        }
+        else {
+            Snackbar.make(findViewById(R.id.myCoordinatorLayout), R.string.somethingWentWrong,
+                    Snackbar.LENGTH_LONG)
+                    .show();
+        }
     }
 
     @Override
     public void onLoaderReset(Loader<String> loader) {
-
+        loader = null;
     }
 
 
