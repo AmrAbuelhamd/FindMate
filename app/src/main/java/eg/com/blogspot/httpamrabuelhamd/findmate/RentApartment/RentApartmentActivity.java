@@ -7,16 +7,19 @@ import android.content.Loader;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.constraint.Group;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodSubtype;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -24,8 +27,8 @@ import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import eg.com.blogspot.httpamrabuelhamd.findmate.NeedApartment.UtilsNeedApartment;
@@ -38,7 +41,7 @@ import okhttp3.RequestBody;
  */
 
 public class RentApartmentActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener,
-        LoaderManager.LoaderCallbacks<String>{
+        LoaderManager.LoaderCallbacks<String> {
 
     private static final int RENT_LOADER_ID = 5;
     ArrayList<String> egyptGov;
@@ -48,7 +51,8 @@ public class RentApartmentActivity extends AppCompatActivity implements AdapterV
     String spinnerResult = "";
     String spinner2Result = "";
 
-    EditText adName,rentPrice;
+    CustomTextInputLayout adName,rentPrice;
+    TextInputEditText adNameTEXT,rentPriceTEXT;
     Spinner periodSpinner;
     RadioGroup radioGroup;
     int periodSpinnerwResult;
@@ -63,6 +67,48 @@ public class RentApartmentActivity extends AppCompatActivity implements AdapterV
         getViews();
         setSpinner();
         preparePeriodSpinner();
+
+        //region fixing inputtextlayout problem with error
+        adNameTEXT.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                adName.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        rentPriceTEXT.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            rentPrice.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        //endregion
+
+        //use this to handle some vies together see
+        // https://stackoverflow.com/questions/42118674/how-to-group-multiple-views-in-a-constraintlayout
+//        Group group=(Group)findViewById(R.id.group);//bind view from xml
+//        group.setVisibility(View.VISIBLE);//this will visible all views
+//        group.setVisibility(View.GONE);//this will set Gone to all views
+
     }
 
     private void preparePeriodSpinner() {
@@ -99,8 +145,12 @@ public class RentApartmentActivity extends AppCompatActivity implements AdapterV
         spinner2.setVisibility(View.GONE);
 
         radioGroup = findViewById(R.id.radioGroup2);
-        rentPrice = findViewById(R.id.rentPrice);
+        rentPrice = findViewById(R.id.rentPriceLayout);
+        rentPriceTEXT = findViewById(R.id.rentPrice);
+
         adName = findViewById(R.id.titleEditText);
+        adNameTEXT = findViewById(R.id.titleText);
+
         periodSpinner = findViewById(R.id.periodSpinner);
         indicator  = findViewById(R.id.rentApartInidcator);
     }
@@ -247,11 +297,11 @@ public class RentApartmentActivity extends AppCompatActivity implements AdapterV
             TextView errorText = (TextView)spinner2.getSelectedView();
             errorText.setTextColor(Color.RED);//just to highlight that this is an error
         }
-        if(TextUtils.isEmpty(adName.getText())) {
+        if(TextUtils.isEmpty(adNameTEXT.getText())) {
             adName.setError("لازم تكتب اسم للأعلان");
-            errorMsg += "** " + adName.getHint() + "\n";
+            errorMsg += "** " + adNameTEXT.getHint() + "\n";
         }
-        if(TextUtils.isEmpty(rentPrice.getText())) {
+        if(TextUtils.isEmpty(rentPriceTEXT.getText())) {
             rentPrice.setError("لازم تكتب سعر للايجار");
             errorMsg += "** " + rentPrice.getHint() + "\n";
         }
@@ -278,8 +328,8 @@ public class RentApartmentActivity extends AppCompatActivity implements AdapterV
 
         RequestBody formBody = new FormBody.Builder()
                 .add("action", "createApartment")
-                .add("title", adName.getText().toString())
-                .add("price", rentPrice.getText().toString())
+                .add("title", adNameTEXT.getText().toString())
+                .add("price", rentPriceTEXT.getText().toString())
                 .add("price_per", String.valueOf(periodSpinnerwResult))
                 .add("furnished", String.valueOf(isFurnshed))
                 .add("location_id", String.valueOf(1))
