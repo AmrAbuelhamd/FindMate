@@ -3,15 +3,9 @@ package eg.com.blogspot.httpamrabuelhamd.findmate.RentApartment;
 import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.util.Log;
-import android.widget.TextView;
 
 import java.io.IOException;
-import java.util.List;
 
-import eg.com.blogspot.httpamrabuelhamd.findmate.NeedApartment.UtilsNeedApartment;
-import eg.com.blogspot.httpamrabuelhamd.findmate.NeedApartment.singleAprtmentDataPublisher.SingleAprtmentData;
-import eg.com.blogspot.httpamrabuelhamd.findmate.R;
-import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -22,6 +16,8 @@ import okhttp3.Response;
  */
 
 public class RentApartLoader extends AsyncTaskLoader<String> {
+    /** Tag for the log messages */
+    private static final String LOG_TAG = RentApartLoader.class.getSimpleName();
     /** Query URL */
     private String mUrl;
     private RequestBody formbody;
@@ -34,13 +30,19 @@ public class RentApartLoader extends AsyncTaskLoader<String> {
     protected void onStartLoading() {
         forceLoad();
     }
-    String respond;
+    String stateOfResponse="";
     /**
      * this is the background thread.
      * @return
      */
     @Override
-    public String loadInBackground() {
+    public /*synchronized*/ String loadInBackground() {
+
+        /*try {
+            wait(1500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }*/
         if (mUrl == null) {
             return null;
         }
@@ -57,11 +59,16 @@ public class RentApartLoader extends AsyncTaskLoader<String> {
         Response response = null;
         try {
             response = client.newCall(request).execute();
-            respond = response.body().string();
+            if (response.code()==200)
+                stateOfResponse = response.body().string();//todo parse this response to know state of the request
+            else
+                Log.e(LOG_TAG,"error response code: "+response.code());
         } catch (IOException e) {
-            Log.v("RentApartMent","e="+e);
+            Log.e(LOG_TAG,"problem retrieving stateOfResponse from server.",e);
         }
-        return respond;
+        Log.v("emad"," "+ stateOfResponse);
+
+        return stateOfResponse;
 
     }
 }

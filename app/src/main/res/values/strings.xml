@@ -1,0 +1,58 @@
+<resources>
+    <string name="app_name">Find Mate</string>
+    <!--main screen data-->
+    <!--m in bellow names stands for main screen -->
+        <!--main phrases-->
+    <string name="mNeedApartment">عاوز شقة</string>
+    <string name="mWannaRent">معايا شقة عاوز ااجرها</string>
+        <!--little description-->
+    <string name="mNeedApartmentDesc">انا فرد محتاج شقة عشان ااجرها</string>
+    <string name="mWannaRentDesc">انا صاحب شقة وعاوز اعرضها للايجار</string>
+    <string name="firstSpinnerHint">اختار المحافظة</string>
+    <string name="secondSpinnerHint">اختار المدينة</string>
+    <string name="testyu">حمحمحمح</string>
+    <string name="price_range">عاوز سعر الشقة في حدود كام</string>
+    <string name="button_getresults">هاتلي الشقق</string>
+    <string name="onNothingSelected">**اختار المحافظة</string>
+    <string name="onNothingSelected2">**اختار المدينة</string>
+    <string name="radioOption1">مفروش</string>
+    <string name="radioOption2">مش مفروش</string>
+    <string name="radioOption3">اي حاجة</string>
+    <string name="aprt_state">عاوز الشقة:</string>
+    <string name="uniteAddedIn">تمت اضافة العقار في:</string>
+    <string name="no_internet_connection">مفيش نت ياسطاااا</string>
+    <string name="no_apartments">مفيش شقق عندنا ليك ياسطيييي</string>
+    <string name="apDetails">تفاصيل الشقة</string>
+    <string name="callOwner">اتصل بصاحب الشقة</string>
+    <string name="ja">
+السلطان الغازي محمد خان الثاني الفاتح هو سابع سلاطين الدولة العثمانية وسلالة آل عثمان، يُلقب، إلى جانب "الفاتح"، بأبي الفتوح وأبو الخيرات، وبعد فتح القسطنطينية أضيف لقب "قيصر" إلى ألقابه وألقاب باقي السلاطين الذين تلوه. </string>
+    <string name="madatory_data">بيانات لازم تملاها...</string>
+    <string name="title">اسم الاعلان</string>
+    <string name="priceOfRent">عاوز تأجر بـ</string>
+    <string name="in">في</string>
+    <string name="furnished">حالة الشقة</string>
+    <string name="next">اللي بعده</string>
+    <string name="enterPrice">ادخل سعر</string>
+    <string name="somethingWentWrong">حاجة حصلت غلط. جرب كمان مرة...</string>
+    <string name="dataSent">تم تسجيل الشقة بنجاح.</string>
+    <string name="optional">بيانات اختيارية</string>
+    <string name="strict_price">هل السعر قابل للنقاش؟</string>
+    <string name="yes">اه</string>
+    <string name="no">لا</string>
+    <string name="roomNum">كام عدد غرف النوم؟</string>
+    <string name="choose">اختار!</string>
+    <string name="bathNum">كام عدد الحمامات؟</string>
+    <string name="floor">في الدور الكام؟</string>
+    <string name="area">المساحة قد اية؟</string>
+    <string name="areaSquar">متر مربع</string>
+
+    <string-array name="period_array">
+        <item>الساعة</item>
+        <item>النص يوم</item>
+        <item>اليوم</item>
+        <item>الاسبوع</item>
+        <item>الشهر</item>
+        <item>السنة</item>
+    </string-array>
+
+</resources>

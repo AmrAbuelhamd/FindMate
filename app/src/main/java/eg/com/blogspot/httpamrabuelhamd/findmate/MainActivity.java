@@ -4,10 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-    import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+    import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -16,7 +16,6 @@ import java.util.UUID;
 import eg.com.blogspot.httpamrabuelhamd.findmate.HandlingMainScreenViews.MainScreenData;
 import eg.com.blogspot.httpamrabuelhamd.findmate.HandlingMainScreenViews.MainScreenDataAdapter;
 import eg.com.blogspot.httpamrabuelhamd.findmate.NeedApartment.NeedApartmentActivity;
-import eg.com.blogspot.httpamrabuelhamd.findmate.RentApartment.RentApartLoader;
 import eg.com.blogspot.httpamrabuelhamd.findmate.RentApartment.RentApartmentActivity;
 
 public class MainActivity extends AppCompatActivity {

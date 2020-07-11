@@ -8,27 +8,23 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.constraint.Group;
-import android.support.design.widget.Snackbar;
-import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodSubtype;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import eg.com.blogspot.httpamrabuelhamd.findmate.NeedApartment.UtilsNeedApartment;
@@ -41,7 +37,7 @@ import okhttp3.RequestBody;
  */
 
 public class RentApartmentActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener,
-        LoaderManager.LoaderCallbacks<String> {
+        LoaderManager.LoaderCallbacks<String>{
 
     private static final int RENT_LOADER_ID = 5;
     ArrayList<String> egyptGov;
@@ -58,7 +54,7 @@ public class RentApartmentActivity extends AppCompatActivity implements AdapterV
     int periodSpinnerwResult;
     int isFurnshed;
     ProgressBar indicator;
-
+    Button roomNum;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -153,6 +149,8 @@ public class RentApartmentActivity extends AppCompatActivity implements AdapterV
 
         periodSpinner = findViewById(R.id.periodSpinner);
         indicator  = findViewById(R.id.rentApartInidcator);
+
+        roomNum = findViewById(R.id.button4);
     }
 
     private void setSpinner() {
@@ -357,4 +355,29 @@ public class RentApartmentActivity extends AppCompatActivity implements AdapterV
     }
 
 
+    public void shownumberpicker(View view) {
+
+        Bundle bundle = new Bundle();
+        bundle.putInt("min", 1);
+        bundle.putInt("max", 8);
+
+        callTheFragment(view,bundle);
+
+    }
+
+    public void shownumberpickerForFloor(View view) {
+
+        Bundle bundle = new Bundle();
+        bundle.putInt("min", 0);
+        bundle.putInt("max", 25);
+
+        callTheFragment(view,bundle);
+    }
+
+    void callTheFragment(View view,Bundle bundle){
+        NumberPickerFragment newFragment = new NumberPickerFragment();
+        newFragment.setCallingView(view);
+        newFragment.show(getSupportFragmentManager(), "time picker");
+        newFragment.setArguments(bundle);
+    }
 }

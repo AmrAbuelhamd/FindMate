@@ -1,28 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:tools="http://schemas.android.com/tools"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/myCoordinatorLayout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:background="#ffccbc"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
+    <View
+        android:id="@+id/view2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rec"
+        app:layout_constraintBottom_toBottomOf="@+id/radioGroup2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <eg.com.blogspot.httpamrabuelhamd.findmate.RentApartment.CustomTextInputLayout
         android:id="@+id/titleEditText"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/title"
+        android:layout_marginStart="8dp"
+        app:counterEnabled="false"
+        app:counterMaxLength="70"
+        app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/titleText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/title"
+            android:maxLength="70" />
+
+    </eg.com.blogspot.httpamrabuelhamd.findmate.RentApartment.CustomTextInputLayout>
+
 
     <TextView
         android:textAppearance="?android:textAppearanceMedium"
@@ -38,17 +63,23 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
+        android:background="@drawable/shape_drop_down_normal"
+        style="@android:style/Widget.Spinner.DropDown"
         android:id="@+id/citySpinner"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginTop="8dp"
+        android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleEditText" />
 
     <Spinner
+        android:background="@drawable/shape_drop_down_normal"
+        style="@android:style/Widget.Spinner.DropDown"
+        android:spinnerMode="dropdown"
         android:id="@+id/subCitySpinner"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginTop="8dp"
@@ -63,23 +94,35 @@
         android:layout_marginRight="16dp"
         android:text="@string/priceOfRent"
         android:textColor="@android:color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/rentPrice"
+        app:layout_constraintBottom_toBottomOf="@+id/rentPriceLayout"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/rentPrice" />
+        app:layout_constraintTop_toTopOf="@+id/rentPriceLayout" />
 
-    <EditText
-        android:id="@+id/rentPrice"
-        android:layout_width="100dp"
+    <eg.com.blogspot.httpamrabuelhamd.findmate.RentApartment.CustomTextInputLayout
+        app:counterEnabled="false"
+        app:errorEnabled="true"
+        app:counterMaxLength="5"
+        android:id="@+id/rentPriceLayout"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="@string/enterPrice"
-        android:inputType="number"
         app:layout_constraintEnd_toStartOf="@+id/textView7"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/citySpinner" />
+        app:layout_constraintTop_toBottomOf="@+id/citySpinner">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/rentPrice"
+            android:maxLength="5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="@string/enterPrice"
+            />
+
+    </eg.com.blogspot.httpamrabuelhamd.findmate.RentApartment.CustomTextInputLayout>
+
 
     <TextView
         android:textStyle="italic"
@@ -91,9 +134,9 @@
         android:layout_marginEnd="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/in"
-        app:layout_constraintBottom_toBottomOf="@+id/rentPrice"
-        app:layout_constraintEnd_toStartOf="@+id/rentPrice"
-        app:layout_constraintTop_toTopOf="@+id/rentPrice" />
+        app:layout_constraintBottom_toBottomOf="@+id/rentPriceLayout"
+        app:layout_constraintEnd_toStartOf="@+id/rentPriceLayout"
+        app:layout_constraintTop_toTopOf="@+id/rentPriceLayout" />
 
     <Spinner
         android:id="@+id/periodSpinner"
@@ -102,9 +145,9 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/rentPrice"
+        app:layout_constraintBottom_toBottomOf="@+id/rentPriceLayout"
         app:layout_constraintEnd_toStartOf="@+id/textView8"
-        app:layout_constraintTop_toTopOf="@+id/rentPrice" />
+        app:layout_constraintTop_toTopOf="@+id/rentPriceLayout" />
 
     <TextView
         android:textStyle="bold"
@@ -126,7 +169,7 @@
         android:layout_marginTop="8dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toStartOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/rentPrice"
+        app:layout_constraintTop_toBottomOf="@+id/rentPriceLayout"
         android:checkedButton="@id/notFurnishedRadio"
         >
 
@@ -162,15 +205,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
-    <NumberPicker
-        android:id="@+id/numberPicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginLeft="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
-
     <ProgressBar
         android:visibility="gone"
         android:id="@+id/rentApartInidcator"
@@ -186,24 +220,166 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/lay"
-        android:layout_width="288dp"
+    <TextView
+        android:textAppearance="?android:textAppearanceMedium"
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/optional"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/strict_price"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:checked="false"
+        android:showText="true"
+        android:splitTrack="false"
+        android:switchTextAppearance="@style/TextAppearance.AppCompat"
+        android:textOff="@string/no"
+        android:textOn="@string/yes"
+        app:layout_constraintBottom_toBottomOf="@+id/textView10"
+        app:layout_constraintEnd_toStartOf="@+id/textView10"
+        app:layout_constraintTop_toTopOf="@+id/textView10" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:text="@string/apDetails"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:ems="10"
+        android:inputType="textMultiLine|textPersonName"
+        android:singleLine="false"
+        app:layout_constraintEnd_toStartOf="@+id/textView11"
+        app:layout_constraintHorizontal_bias="0.75"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        tools:layout_editor_absoluteY="515dp" />
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/tex"
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/roomNum"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/bathNum"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/floor"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+    <Button
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:onClick="shownumberpicker"
+        android:id="@+id/button4"
+        android:layout_width="55dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/choose"
+        app:layout_constraintBottom_toBottomOf="@+id/textView13"
+        app:layout_constraintEnd_toStartOf="@+id/textView13"
+        app:layout_constraintTop_toTopOf="@+id/textView13" />
+
+    <Button
+        android:id="@+id/button5"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="55dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="8dp"
+        android:onClick="shownumberpicker"
+        android:text="@string/choose"
+        app:layout_constraintBottom_toBottomOf="@+id/textView14"
+        app:layout_constraintEnd_toStartOf="@+id/textView14"
+        app:layout_constraintTop_toTopOf="@+id/textView14" />
+
+    <Button
+        android:id="@+id/button6"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="55dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="8dp"
+        android:onClick="shownumberpickerForFloor"
+        android:text="@string/choose"
+        app:layout_constraintBottom_toBottomOf="@+id/textView15"
+        app:layout_constraintEnd_toStartOf="@+id/textView15"
+        app:layout_constraintTop_toTopOf="@+id/textView15" />
+
+    <eg.com.blogspot.httpamrabuelhamd.findmate.RentApartment.CustomTextInputLayout
+        android:id="@+id/areaLayout"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        app:counterEnabled="false"
+        app:counterMaxLength="4"
+        app:errorEnabled="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView15">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/areaTextEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="hint" />
-    </android.support.design.widget.TextInputLayout>
+            android:hint="@string/area"
+            android:inputType="number"
+            android:maxLength="4" />
 
-</android.support.constraint.ConstraintLayout>
-</android.support.design.widget.CoordinatorLayout>
+    </eg.com.blogspot.httpamrabuelhamd.findmate.RentApartment.CustomTextInputLayout>
+
+    <TextView
+        android:textColor="@android:color/black"
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/areaSquar"
+        app:layout_constraintBottom_toBottomOf="@+id/areaLayout"
+        app:layout_constraintEnd_toStartOf="@+id/areaLayout" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
